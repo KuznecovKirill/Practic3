@@ -1,13 +1,253 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body {
+    background-color: dimgray;
+    font-family: "Oswald", sans-serif;
+}
+
+.container {
+    max-width: 90%;
+    margin: 0 auto;
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px;
+    height: 15px;
+}
+
+.header_logo {
+    font-size: 24px;
+    text-decoration: none;
+    color: gold;
+    /* color: red;  */
+
+}
+
+::placeholder {
+    color: gold;
+}
+
+.header_search {
+    font-size: 12px;
+    padding: 6px;
+    border: 6px rgb(204, 179, 35);
+    border-radius: 6px;
+    outline: none;
+}
+
+
+.movies {
+    display: flex;
+    flex-wrap: wrap;
+    /*Будет ли переноситься на другую строку, если места нет*/
+    justify-content: space-around;
+}
+
+.movie {
+    width: 260px;
+    height: auto;
+    margin: 15px;
+    position: relative;
+}
+
+.movie_cover-inner {
+    position: relative;
+    height: 400px;
+}
+
+.movie_cover {
+    max-width: 100%;
+    height: 100%;
+}
+
+.movie_cover-darkened {
+    background-color: black;
+    opacity: 0.2;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    max-width: 100%;
+    height: 100%;
+    z-index: 0;
+
+}
+
+.movie_cover-darkened:hover {
+    background-color: gold;
+    cursor: pointer;
+}
+
+.movie_info {
+    padding: 10px 0px;
+}
+
+.movie_title {
+    font-size: 20px;
+    color: white;
+}
+
+.movie_category {
+    font-size: 18px;
+    color: gold;
+}
+
+.movie_average {
+    position: absolute;
+    top: 6px;
+    right: 4px;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    justify-content: center;
+    color: rgb(223, 224, 223);
+    background-color: rgb(110, 108, 108);
+    font-size: 18px;
+
+}
+
+.movie_average-red {
+    border: 3px solid red;
+}
+
+.movie_average-orange {
+    border: 3px solid orange;
+}
+
+.movie_average-green {
+    border: 3px solid green;
+}
+
+.movie_average-none {
+    border: 3px solid gray;
+    display: none;
+}
+
+
+/* Modal */
+.modal-movie {
+    display: flex;
+    position: fixed;
+    z-index: 2;
+    left: 0;
+    right: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0, 0.4);
+    transition: width 2s;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.5s;
+}
+
+.modal-movie.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.modal-card {
+    max-width: 600px;
+    padding: 16px;
+    box-shadow: 0 0 20px 0 rgb(56, 56, 56);
+    background-color: rgb(197, 181, 88);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    transform: scale(0.5);
+    transition: 0.4s all;
+}
+
+.modal-card.active {
+    transform: scale(1);
+
+}
+
+.modal-movie-backdrop {
+    width: 60%;
+    margin: 0 auto;
+}
+
+.modal-movie-info {
+    /* margin-left: 20px; */
+}
+
+.modal-movie-button-close {
+    padding: 5px;
+    margin: 10px;
+    align-self: center;
+}
+
+.modal-movie-button-comments {
+    padding: 5px;
+    margin: 10px;
+    align-self: center;
+}
+
+/* Comments */
+.movie_comments-card {
+    transform: scale(0.5);
+    transition: 0.4s all;
+    opacity: 0;
+}
+
+.movie_comments-card.active {
+    transform: scale(1);
+    opacity: 1;
+}
+
+/* dropdown */
+.custom-dropdown {
+    font-family: 'Roboto', sans-serif;
+    font-size: 12px;
+    color: #333;
+    position: relative;
+}
+
+.custom-dropdown-toggle {
+    background-color: #f5f5f5;
+    font-size: 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.custom-dropdown-toggle:hover {
+    background-color: gold;
+    display: block;
+}
+
+.custom-dropdown-menu {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 8px 0;
+}
+
+.custom-dropdown-item {
+    list-style-type: none;
+    margin: 0;
+    z-index: 5;
+    position: relative;
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.custom-dropdown-item:hover {
+    background-color: #f5f5f5;
 }
